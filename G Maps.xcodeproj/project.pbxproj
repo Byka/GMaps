@@ -13,6 +13,9 @@
 		1FB44C912083611D007FB534 /* G_Maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FB44C8F2083611D007FB534 /* G_Maps.xcdatamodeld */; };
 		1FB44C932083611D007FB534 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FB44C922083611D007FB534 /* Assets.xcassets */; };
 		1FB44C962083611D007FB534 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB44C942083611D007FB534 /* LaunchScreen.storyboard */; };
+		71CBEF5720861E2800AC7D01 /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CBEF5620861E2800AC7D01 /* RouteMapViewController.swift */; };
+		71F245992084C63800B8FAC9 /* CurrentPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F245982084C63800B8FAC9 /* CurrentPositionViewController.swift */; };
+		71F2459B2084D0D300B8FAC9 /* PositionChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F2459A2084D0D300B8FAC9 /* PositionChangeViewController.swift */; };
 		D9CDE6AAB6F0DBC67E05E897 /* Pods_G_Maps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91BB2353B457B2B8D111B62 /* Pods_G_Maps.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +28,9 @@
 		1FB44C922083611D007FB534 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FB44C952083611D007FB534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FB44C972083611D007FB534 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71CBEF5620861E2800AC7D01 /* RouteMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
+		71F245982084C63800B8FAC9 /* CurrentPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPositionViewController.swift; sourceTree = "<group>"; };
+		71F2459A2084D0D300B8FAC9 /* PositionChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionChangeViewController.swift; sourceTree = "<group>"; };
 		78D93A2880B3F3F27598CED8 /* Pods-G Maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-G Maps.release.xcconfig"; path = "Pods/Target Support Files/Pods-G Maps/Pods-G Maps.release.xcconfig"; sourceTree = "<group>"; };
 		9E6997E1E5FBA36C3102A30B /* Pods-G Maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-G Maps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-G Maps/Pods-G Maps.debug.xcconfig"; sourceTree = "<group>"; };
 		C91BB2353B457B2B8D111B62 /* Pods_G_Maps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_G_Maps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +71,9 @@
 			children = (
 				1FB44C882083611D007FB534 /* AppDelegate.swift */,
 				1FB44C8A2083611D007FB534 /* ViewController.swift */,
+				71F245982084C63800B8FAC9 /* CurrentPositionViewController.swift */,
+				71F2459A2084D0D300B8FAC9 /* PositionChangeViewController.swift */,
+				71CBEF5620861E2800AC7D01 /* RouteMapViewController.swift */,
 				1FB44C8C2083611D007FB534 /* Main.storyboard */,
 				1FB44C922083611D007FB534 /* Assets.xcassets */,
 				1FB44C942083611D007FB534 /* LaunchScreen.storyboard */,
@@ -215,6 +224,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB44C912083611D007FB534 /* G_Maps.xcdatamodeld in Sources */,
+				71CBEF5720861E2800AC7D01 /* RouteMapViewController.swift in Sources */,
+				71F2459B2084D0D300B8FAC9 /* PositionChangeViewController.swift in Sources */,
+				71F245992084C63800B8FAC9 /* CurrentPositionViewController.swift in Sources */,
 				1FB44C8B2083611D007FB534 /* ViewController.swift in Sources */,
 				1FB44C892083611D007FB534 /* AppDelegate.swift in Sources */,
 			);

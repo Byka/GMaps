@@ -7,101 +7,96 @@
 //
 
 import UIKit
-import CoreLocation
-import GoogleMaps
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
-    let locationManager = CLLocationManager()
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
+    
+    let featuresArray = ["User current position", "Drag marker", "Route map"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        locationManager.requestWhenInUseAuthorization()
+      /*
+        let myButton = UIButton()
         
-//        if (CLLocationManager.locationServicesEnabled()) {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-
+        let width = self.view.frame.size.width/2
+        let height = self.view.frame.size.height/2
+        myButton.frame = CGRect(x: width-30, y: height-15, width:100, height: 50)
+        
+        myButton.backgroundColor = UIColor.black
+       myButton.setTitle("Click", for: .normal)
+        myButton.titleLabel?.textColor = UIColor.white
+       
+        myButton.titleLabel?.text = "Click"
+        myButton.addTarget(self, action: #selector(changeView), for: .touchUpInside)
+        
+        self.view .addSubview(myButton)
+        */
     }
 
-    func loadView(with latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 16.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.delegate = self
-        view = mapView
-        
-        // Creates a marker in the center of the map.
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-        marker.isDraggable = true
-        
-        waypointService()
-        
-        let path = GMSMutablePath()
-        path.add(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-        path.add(CLLocationCoordinate2D(latitude: latitude+0.1, longitude: longitude+0.1))
-        let polyline = GMSPolyline(path: path)
-        polyline.map = mapView
 
+    
+    func changeView() {
+
+    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+    let currentPositionVC = storyBoard.instantiateViewController(withIdentifier: "CurrentPositionViewController") as! CurrentPositionViewController
+
+        self.present(currentPositionVC, animated:true, completion:nil)
     }
     
-    func waypointService() {
-        let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=Gachibowly Hyderabad, Telagana,MA&destination=Ammerpeta Hyderabad, Telgana,MA&waypoints=Madhapur, Hyderabad&key=AIzaSyBIIXX9R1bP_NlYUKRmpX9JUw9HRktR7Cg"
-        if let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                if let _ = error {
-                    
-                }else {
-                    let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                    print(json)
-                }
-            }).resume()
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return featuresArray.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //var cell: UITableViewCell?
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = featuresArray[indexPath.row] as String
+        
+        return cell
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let currentPositionVC = storyBoard.instantiateViewController(withIdentifier: "CurrentPositionViewController") as! CurrentPositionViewController
+            
+            self.present(currentPositionVC, animated:true, completion:nil)
+            
+        case 1:
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let ChangePositionVC = storyBoard.instantiateViewController(withIdentifier: "PositionChangeViewController") as! PositionChangeViewController
+            
+            self.present(ChangePositionVC, animated:true, completion:nil)
+        
+        case 2:
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let routeVC = storyBoard.instantiateViewController(withIdentifier: "RouteMapViewController") as! RouteMapViewController
+            
+            self.present(routeVC, animated:true, completion:nil)
+        
+        default:
+            changeView()
+
         }
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locationObj = locations.last!
-        let coord = locationObj.coordinate
-        /*longitude.text = coord.longitude
-        latitude.text = coord.latitude
-        longitude.text = "\(coord.longitude)"
-        latitude.text = "\(coord.latitude)"*/
-        
-        loadView(with: coord.latitude, longitude: coord.longitude)
-        
-        locationManager.stopUpdatingLocation()
-    }
     
-    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-        print("willMove")
-    }
     
-    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-        
-    }
     
-    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-        let coor = marker.position
-        print(coor.latitude, coor.longitude)
-    }
 }
 
